@@ -71,7 +71,7 @@ aathoos is open source and community-driven. Whether you're a developer, designe
 4. Push to your branch (`git push origin feature/your-idea`)
 5. Open a Pull Request
 
-Check out [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Check out [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines (coming soon).
 
 ---
 
