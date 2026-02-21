@@ -1,0 +1,10 @@
+{
+  // Allow inline HTML (used in README footer)
+  "MD033": false,
+  // Allow long lines (tables, URLs)
+  "MD013": false,
+  // Allow duplicate headings in different files
+  "MD024": { "siblings_only": true },
+  // Allow trailing punctuation in headings
+  "MD026": false
+}

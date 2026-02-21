@@ -1,0 +1,52 @@
+name: Style
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  editorconfig:
+    name: EditorConfig
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: editorconfig-checker/action-editorconfig-checker@main
+      - run: editorconfig-checker
+
+  trailing-whitespace:
+    name: Trailing Whitespace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for trailing whitespace in source files
+        run: |
+          ! git grep -lP '\t ' -- '*.js' '*.jsx' '*.ts' '*.tsx' '*.css' '*.html' '*.yml' '*.yaml' '*.json' '*.md' || \
+          (echo "::error::Found files with trailing whitespace" && exit 1)
+
+  line-endings:
+    name: Line Endings
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for CRLF in source files
+        run: |
+          if git grep -rlP '\r\n' -- '*.js' '*.jsx' '*.ts' '*.tsx' '*.css' '*.html' '*.yml' '*.yaml' '*.json' '*.sh' 2>/dev/null; then
+            echo "::error::Found files with CRLF line endings (should be LF)"
+            exit 1
+          fi
+
+  no-large-files:
+    name: Large Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for files over 1MB
+        run: |
+          large_files=$(find . -not -path './.git/*' -not -path '*/node_modules/*' -type f -size +1M)
+          if [ -n "$large_files" ]; then
+            echo "::error::Found files over 1MB:"
+            echo "$large_files"
+            exit 1
+          fi

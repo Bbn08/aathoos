@@ -1,0 +1,58 @@
+name: Repo Health
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  required-files:
+    name: Required Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that essential project files exist
+        run: |
+          missing=0
+          for file in README.md LICENSE CONTRIBUTING.md CODE_OF_CONDUCT.md SECURITY.md ARCHITECTURE.md ROADMAP.md CHANGELOG.md; do
+            if [ ! -f "$file" ]; then
+              echo "::error::Missing required file: $file"
+              missing=1
+            fi
+          done
+          exit $missing
+
+  directory-readmes:
+    name: Directory READMEs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check that all top-level directories have READMEs
+        run: |
+          missing=0
+          for dir in core macos windows linux web docs scripts assets design tests; do
+            if [ ! -f "$dir/README.md" ]; then
+              echo "::error::Missing README.md in $dir/"
+              missing=1
+            fi
+          done
+          exit $missing
+
+  no-secrets:
+    name: No Secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for accidentally committed secrets
+        run: |
+          found=0
+          if git grep -lE '(PRIVATE.KEY|sk_live_|api_key|password\s*=\s*["\x27][^\x27"]+["\x27])' -- ':!.github/' ':!*.md' 2>/dev/null; then
+            echo "::error::Possible secrets found in committed files"
+            found=1
+          fi
+          if [ -f .env ] || [ -f .env.local ]; then
+            echo "::error::Found .env file in repository"
+            found=1
+          fi
+          exit $found

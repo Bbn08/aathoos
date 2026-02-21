@@ -1,0 +1,16 @@
+{
+  "Exclude": [
+    "node_modules",
+    "dist",
+    ".git",
+    "*.png",
+    "*.jpg",
+    "*.ico",
+    "*.icns",
+    "*.dmg",
+    "*.exe",
+    "*.woff",
+    "*.woff2",
+    "package-lock.json"
+  ]
+}
