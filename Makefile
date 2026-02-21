@@ -1,4 +1,4 @@
-.PHONY: web web-dev clean
+.PHONY: web web-dev test clean
 
 # Web / landing page
 web:
@@ -8,6 +8,11 @@ web:
 web-dev:
 	@echo "Starting landing page dev server..."
 	@cd web && npm run dev
+
+# Test (web E2E)
+test:
+	@echo "Running E2E tests..."
+	@cd web && npm run build && npm test
 
 # Clean
 clean:

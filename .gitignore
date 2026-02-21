@@ -67,3 +67,7 @@ coverage/
 
 # Design tool temp files
 *.fig.bak
+
+# Playwright
+playwright-report/
+test-results/
