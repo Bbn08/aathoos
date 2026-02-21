@@ -11,6 +11,8 @@
     "\\.exe$",
     "\\.woff$",
     "\\.woff2$",
-    "package-lock\\.json"
+    "package-lock\\.json",
+    "ARCHITECTURE\\.md",
+    "\\.vite"
   ]
 }
