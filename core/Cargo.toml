@@ -1,0 +1,22 @@
+[package]
+name = "aathoos-core"
+version = "0.1.0"
+edition = "2021"
+description = "Platform-independent data models, storage, and business logic for aathoos"
+
+# staticlib  — links into Swift (macOS) and C# (Windows) via FFI
+# cdylib     — dynamic library if needed later
+# lib        — Rust-to-Rust usage
+[lib]
+name = "aathoos_core"
+crate-type = ["lib", "staticlib", "cdylib"]
+
+[dependencies]
+rusqlite  = { version = "0.31", features = ["bundled"] }
+serde     = { version = "1",    features = ["derive"]  }
+chrono    = { version = "0.4",  features = ["serde"]   }
+uuid      = { version = "1",    features = ["v4"]      }
+thiserror = "2"
+
+[dev-dependencies]
+tempfile = "3"
