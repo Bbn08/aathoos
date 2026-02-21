@@ -1,0 +1,9 @@
+# Default owner for everything
+*           @aathoos/maintainers
+
+# Platform-specific owners (assign as contributors emerge)
+/macos/     @aathoos/maintainers
+/windows/   @aathoos/maintainers
+/linux/     @aathoos/maintainers
+/core/      @aathoos/maintainers
+/web/       @aathoos/maintainers

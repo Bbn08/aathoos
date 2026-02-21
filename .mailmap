@@ -1,0 +1,7 @@
+# Mailmap — maps contributor name/email variations to canonical identities
+# Used by `git shortlog` and GitHub's contributor graphs
+#
+# Format:
+#   Canonical Name <canonical@email> Commit Name <commit@email>
+#
+# Add entries as contributors submit with inconsistent names or emails

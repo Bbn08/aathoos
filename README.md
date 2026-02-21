@@ -38,12 +38,24 @@ This is an early-stage open-source project. We're just getting started, and we'd
 
 ```
 aathoos/
-├── macos/            # macOS-specific code
-├── windows/          # Windows-specific code
-├── linux/            # Linux-specific code
-├── shared/           # Cross-platform shared code
-├── web/              # Landing page / website
-└── README.md
+├── macos/              # macOS application target
+├── windows/            # Windows application target
+├── linux/              # Linux application target
+├── core/               # Cross-platform business logic
+├── web/                # Landing page (React + Vite)
+├── docs/               # Technical documentation and ADRs
+├── scripts/            # Developer tooling and build scripts
+├── assets/             # Source brand assets (logo, icons)
+├── design/             # UI/UX wireframes and design specs
+├── tests/              # Cross-component integration tests
+├── ARCHITECTURE.md     # High-level design decisions
+├── ROADMAP.md          # Public roadmap by phase
+├── CONTRIBUTING.md     # How to contribute
+├── CHANGELOG.md        # Version history
+├── CODE_OF_CONDUCT.md  # Community standards
+├── SECURITY.md         # Vulnerability reporting
+├── Makefile            # Build entry points
+└── LICENSE             # MIT
 ```
 
 ---
@@ -71,7 +83,7 @@ aathoos is open source and community-driven. Whether you're a developer, designe
 4. Push to your branch (`git push origin feature/your-idea`)
 5. Open a Pull Request
 
-Check out [CONTRIBUTING.md](.github/CONTRIBUTING.md) for guidelines (coming soon).
+Check out [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. See [ARCHITECTURE.md](ARCHITECTURE.md) for design decisions and [ROADMAP.md](ROADMAP.md) for what's planned.
 
 ---
 

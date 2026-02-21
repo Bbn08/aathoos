@@ -1,13 +1,15 @@
-name: CI
+name: Web
 
 on:
   push:
     branches: [main]
+    paths: ['web/**']
   pull_request:
     branches: [main]
+    paths: ['web/**']
 
 jobs:
-  build-web:
+  build:
     name: Build Landing Page
     runs-on: ubuntu-latest
     steps:

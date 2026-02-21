@@ -30,9 +30,40 @@ Thumbs.db
 *.AppImage
 *.msi
 
+# Platform-specific build dirs
+macos/build/
+macos/.build/
+macos/DerivedData/
+windows/x64/
+windows/x86/
+windows/ARM64/
+linux/build/
+
+# Rust
+target/
+Cargo.lock
+
+# Swift
+*.xcuserstate
+*.xcworkspacedata
+xcuserdata/
+
+# C/C++ / CMake
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
 # Logs
 *.log
 npm-debug.log*
 
 # Coverage
 coverage/
+
+# Design tool temp files
+*.fig.bak

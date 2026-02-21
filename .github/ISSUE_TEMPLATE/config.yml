@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Feature Discussion
+    url: https://github.com/aathoos/aathoos/discussions
+    about: Discuss feature ideas before opening a feature request issue
+  - name: Security Vulnerability
+    url: https://github.com/aathoos/aathoos/security/advisories/new
+    about: Report a security vulnerability privately

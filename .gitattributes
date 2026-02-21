@@ -1,0 +1,41 @@
+# Normalize line endings
+* text=auto
+
+# Force LF for source files
+*.js    text eol=lf
+*.jsx   text eol=lf
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.md    text eol=lf
+*.sh    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.json  text eol=lf
+*.toml  text eol=lf
+*.rs    text eol=lf
+*.swift text eol=lf
+*.cpp   text eol=lf
+*.h     text eol=lf
+*.c     text eol=lf
+
+# Windows scripts keep CRLF
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+*.ps1   text eol=crlf
+
+# Binaries — no diff, no merge
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.icns  binary
+*.svg   binary
+*.dmg   binary
+*.exe   binary
+*.deb   binary
+*.rpm   binary
+*.msi   binary
+*.AppImage binary

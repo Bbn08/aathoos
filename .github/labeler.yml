@@ -1,0 +1,36 @@
+# Auto-label PRs based on changed files
+# Used by .github/workflows/labeler.yml
+
+"platform: macos":
+  - changed-files:
+    - any-glob-to-any-file: "macos/**"
+
+"platform: windows":
+  - changed-files:
+    - any-glob-to-any-file: "windows/**"
+
+"platform: linux":
+  - changed-files:
+    - any-glob-to-any-file: "linux/**"
+
+"component: core":
+  - changed-files:
+    - any-glob-to-any-file: "core/**"
+
+"component: web":
+  - changed-files:
+    - any-glob-to-any-file: "web/**"
+
+"component: docs":
+  - changed-files:
+    - any-glob-to-any-file:
+      - "docs/**"
+      - "*.md"
+
+"component: design":
+  - changed-files:
+    - any-glob-to-any-file: "design/**"
+
+"ci/cd":
+  - changed-files:
+    - any-glob-to-any-file: ".github/**"
