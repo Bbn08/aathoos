@@ -6,17 +6,103 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg-main: #1c1a27;
+  --section-bg: #1c1a27;
+  --nav-bg: rgba(28, 26, 39, 0.85);
+  --text-primary: #dbdcd7;
+  --text-muted: rgba(219, 220, 215, 0.6);
+  --text-soft: rgba(219, 220, 215, 0.55);
+  --text-faint: rgba(219, 220, 215, 0.35);
+
+  --border-soft: rgba(219, 220, 215, 0.1);
+  --border-strong: rgba(219, 220, 215, 0.25);
+  --border-hover: rgba(219, 220, 215, 0.35);
+
+  --surface-soft: rgba(219, 220, 215, 0.05);
+  --surface-hover: rgba(219, 220, 215, 0.1);
+
+  --accent: #e7627d;
+
+  --hero-heading: #ffffff;
+  --hero-text: rgba(255, 255, 255, 0.8);
+  --hero-badge-text: rgba(255, 255, 255, 0.9);
+  --hero-badge-border: rgba(255, 255, 255, 0.28);
+  --hero-gradient: linear-gradient(
+    to top,
+    #dbdcd7 0%,
+    #dddcd7 24%,
+    #e2c9cc 30%,
+    #e7627d 46%,
+    #b8235a 59%,
+    #801357 71%,
+    #3d1635 84%,
+    #1c1a27 100%
+  );
+
+  --btn-primary-bg: #ffffff;
+  --btn-primary-text: #1c1a27;
+  --btn-secondary-text: #ffffff;
+  --btn-secondary-border: rgba(255, 255, 255, 0.35);
+  --btn-secondary-border-hover: rgba(255, 255, 255, 0.62);
+
+  --cta-btn-bg: #b8235a;
+  --cta-btn-text: #ffffff;
+}
+
+:root[data-theme='light'] {
+  --bg-main: #f6f2ea;
+  --section-bg: #fffdf8;
+  --nav-bg: rgba(255, 252, 245, 0.9);
+  --text-primary: #252233;
+  --text-muted: rgba(37, 34, 51, 0.72);
+  --text-soft: rgba(37, 34, 51, 0.72);
+  --text-faint: rgba(37, 34, 51, 0.52);
+
+  --border-soft: rgba(37, 34, 51, 0.14);
+  --border-strong: rgba(37, 34, 51, 0.3);
+  --border-hover: rgba(37, 34, 51, 0.42);
+
+  --surface-soft: rgba(255, 255, 255, 0.72);
+  --surface-hover: rgba(255, 255, 255, 0.95);
+
+  --accent: #b8235a;
+
+  --hero-heading: #231a2e;
+  --hero-text: rgba(35, 26, 46, 0.8);
+  --hero-badge-text: rgba(35, 26, 46, 0.8);
+  --hero-badge-border: rgba(35, 26, 46, 0.28);
+  --hero-gradient: linear-gradient(
+    to top,
+    #fff6df 0%,
+    #ffe9d8 30%,
+    #ffd5c8 48%,
+    #f8b5b8 64%,
+    #e594ab 78%,
+    #d17f9f 100%
+  );
+
+  --btn-primary-bg: #252233;
+  --btn-primary-text: #fffdf8;
+  --btn-secondary-text: #252233;
+  --btn-secondary-border: rgba(37, 34, 51, 0.35);
+  --btn-secondary-border-hover: rgba(37, 34, 51, 0.58);
+
+  --cta-btn-bg: #8b2147;
+  --cta-btn-text: #fffdf8;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  background: #1c1a27;
-  color: #dbdcd7;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 a {
