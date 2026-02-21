@@ -33,7 +33,7 @@ impl<'a> StudySessionRepo<'a> {
 
         self.db.conn.execute(
             "INSERT INTO study_sessions (id, subject, duration_secs, notes, started_at)
-             VALUES (?1, ?2, ?3, ?4, ?5)",
+            VALUES (?1, ?2, ?3, ?4, ?5)",
             params![
                 session.id,
                 session.subject,
@@ -49,7 +49,7 @@ impl<'a> StudySessionRepo<'a> {
     pub fn get_by_id(&self, id: &str) -> Result<StudySession> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, subject, duration_secs, notes, started_at
-             FROM study_sessions WHERE id = ?1",
+            FROM study_sessions WHERE id = ?1",
         )?;
 
         stmt.query_row(params![id], row_to_session)
@@ -59,7 +59,7 @@ impl<'a> StudySessionRepo<'a> {
     pub fn list_all(&self) -> Result<Vec<StudySession>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, subject, duration_secs, notes, started_at
-             FROM study_sessions ORDER BY started_at DESC",
+            FROM study_sessions ORDER BY started_at DESC",
         )?;
 
         let rows = stmt.query_map([], row_to_session)?;
@@ -70,7 +70,7 @@ impl<'a> StudySessionRepo<'a> {
     pub fn list_by_subject(&self, subject: &str) -> Result<Vec<StudySession>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, subject, duration_secs, notes, started_at
-             FROM study_sessions WHERE subject = ?1 ORDER BY started_at DESC",
+            FROM study_sessions WHERE subject = ?1 ORDER BY started_at DESC",
         )?;
 
         let rows = stmt.query_map(params![subject], row_to_session)?;

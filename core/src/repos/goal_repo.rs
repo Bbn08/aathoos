@@ -37,8 +37,8 @@ impl<'a> GoalRepo<'a> {
 
         self.db.conn.execute(
             "INSERT INTO goals
-             (id, title, description, target_date, progress, is_completed, created_at, updated_at)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+            (id, title, description, target_date, progress, is_completed, created_at, updated_at)
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
             params![
                 goal.id,
                 goal.title,
@@ -57,7 +57,7 @@ impl<'a> GoalRepo<'a> {
     pub fn get_by_id(&self, id: &str) -> Result<Goal> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, description, target_date, progress, is_completed, created_at, updated_at
-             FROM goals WHERE id = ?1",
+            FROM goals WHERE id = ?1",
         )?;
 
         stmt.query_row(params![id], row_to_goal)
@@ -67,7 +67,7 @@ impl<'a> GoalRepo<'a> {
     pub fn list_all(&self) -> Result<Vec<Goal>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, description, target_date, progress, is_completed, created_at, updated_at
-             FROM goals ORDER BY created_at DESC",
+            FROM goals ORDER BY created_at DESC",
         )?;
 
         let rows = stmt.query_map([], row_to_goal)?;

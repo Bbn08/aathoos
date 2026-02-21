@@ -38,8 +38,8 @@ impl<'a> TaskRepo<'a> {
 
         self.db.conn.execute(
             "INSERT INTO tasks
-             (id, title, notes, due_date, priority, is_completed, created_at, updated_at)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
+            (id, title, notes, due_date, priority, is_completed, created_at, updated_at)
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
             params![
                 task.id,
                 task.title,
@@ -58,7 +58,7 @@ impl<'a> TaskRepo<'a> {
     pub fn get_by_id(&self, id: &str) -> Result<Task> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, notes, due_date, priority, is_completed, created_at, updated_at
-             FROM tasks WHERE id = ?1",
+            FROM tasks WHERE id = ?1",
         )?;
 
         stmt.query_row(params![id], row_to_task)
@@ -68,7 +68,7 @@ impl<'a> TaskRepo<'a> {
     pub fn list_all(&self) -> Result<Vec<Task>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, notes, due_date, priority, is_completed, created_at, updated_at
-             FROM tasks ORDER BY created_at DESC",
+            FROM tasks ORDER BY created_at DESC",
         )?;
 
         let rows = stmt.query_map([], row_to_task)?;
@@ -79,8 +79,8 @@ impl<'a> TaskRepo<'a> {
     pub fn list_incomplete(&self) -> Result<Vec<Task>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, notes, due_date, priority, is_completed, created_at, updated_at
-             FROM tasks WHERE is_completed = 0
-             ORDER BY due_date ASC NULLS LAST, priority DESC",
+            FROM tasks WHERE is_completed = 0
+            ORDER BY due_date ASC NULLS LAST, priority DESC",
         )?;
 
         let rows = stmt.query_map([], row_to_task)?;

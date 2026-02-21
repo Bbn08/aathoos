@@ -30,7 +30,7 @@ impl<'a> NoteRepo<'a> {
 
         self.db.conn.execute(
             "INSERT INTO notes (id, title, body, subject, created_at, updated_at)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
             params![note.id, note.title, note.body, note.subject, note.created_at, note.updated_at],
         )?;
 
@@ -49,7 +49,7 @@ impl<'a> NoteRepo<'a> {
     pub fn list_all(&self) -> Result<Vec<Note>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, body, subject, created_at, updated_at
-             FROM notes ORDER BY updated_at DESC",
+            FROM notes ORDER BY updated_at DESC",
         )?;
 
         let rows = stmt.query_map([], row_to_note)?;
@@ -60,7 +60,7 @@ impl<'a> NoteRepo<'a> {
     pub fn list_by_subject(&self, subject: &str) -> Result<Vec<Note>> {
         let mut stmt = self.db.conn.prepare(
             "SELECT id, title, body, subject, created_at, updated_at
-             FROM notes WHERE subject = ?1 ORDER BY updated_at DESC",
+            FROM notes WHERE subject = ?1 ORDER BY updated_at DESC",
         )?;
 
         let rows = stmt.query_map(params![subject], row_to_note)?;
