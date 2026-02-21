@@ -1,6 +1,38 @@
+# Dependencies
 node_modules
+
+# Build output
 dist
+build
+out
+
+# Environment
 .env
 .env.*
 *.local
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Native build artifacts
+*.app
+*.exe
+*.dmg
+*.deb
+*.rpm
+*.AppImage
+*.msi
+
+# Logs
+*.log
+npm-debug.log*
+
+# Coverage
+coverage/
