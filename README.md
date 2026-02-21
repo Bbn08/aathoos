@@ -2,13 +2,17 @@
 
 > A personal management OS built for students, by students.
 
-**aathoos** is an open-source student operating system — a unified space to manage your academics, tasks, goals, notes, and life. No more juggling five different apps. Just one place that works the way your brain does.
+**aathoos** is an open-source native desktop application — a unified space to manage your academics, tasks, goals, notes, and life. No more juggling five different apps. Just one place that works the way your brain does.
+
+Available for **macOS**, **Windows**, and **Linux**.
 
 ---
 
 ## What is aathoos?
 
 Students deal with a unique kind of chaos — assignments, exams, projects, side hustles, and trying to have a life. aathoos is built to tame that chaos. Think of it as your second brain: organized, fast, and actually useful.
+
+aathoos is a **native desktop app** — not a web app. It runs on your machine, stores your data locally, and works offline. The website exists only as a landing page to explain what aathoos is and where to download it.
 
 This is an early-stage open-source project. We're just getting started, and we'd love for you to be part of it.
 
@@ -22,9 +26,25 @@ This is an early-stage open-source project. We're just getting started, and we'd
 - **Study Planner** — build study schedules around your calendar
 - **Goal Tracking** — set semester goals and stay accountable
 - **Resource Hub** — organize links, files, and references by subject
-- **Focus Mode** — minimize distractions when it's time to work
+- **Focus Mode** — minimize distractions with native OS integration
+- **Dark/Light Theme** — follows your system appearance with manual override
+- **Data Export** — download your data in common formats
 
 > Features are being actively discussed and shaped. Join the conversation.
+
+---
+
+## Project Structure
+
+```
+aathoos/
+├── macos/            # macOS-specific code
+├── windows/          # Windows-specific code
+├── linux/            # Linux-specific code
+├── shared/           # Cross-platform shared code
+├── web/              # Landing page / website
+└── README.md
+```
 
 ---
 
