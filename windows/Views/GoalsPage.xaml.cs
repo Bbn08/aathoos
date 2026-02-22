@@ -1,11 +1,8 @@
-using Microsoft.UI.Xaml.Controls;
+using System.Windows.Controls;
 
 namespace aathoos.Views;
 
-public sealed partial class GoalsPage : Page
+public partial class GoalsPage : UserControl
 {
-  public GoalsPage()
-  {
-    InitializeComponent();
-  }
+    public GoalsPage() => InitializeComponent();
 }

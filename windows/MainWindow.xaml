@@ -2,64 +2,83 @@
   x:Class="aathoos.MainWindow"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  Title="aathoos">
+  Title="aathoos" Height="700" Width="1100"
+  Background="#1c1a27"
+  WindowStartupLocation="CenterScreen">
 
-  <Grid Background="{StaticResource AppBackgroundBrush}">
+  <Window.Resources>
+    <Style x:Key="NavItemStyle" TargetType="ListBoxItem">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Foreground" Value="#B0dbdcd7" />
+      <Setter Property="Padding" Value="20,11" />
+      <Setter Property="FontSize" Value="14" />
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListBoxItem">
+            <Border x:Name="Root"
+                    Background="{TemplateBinding Background}"
+                    Padding="{TemplateBinding Padding}"
+                    Margin="8,2,8,2"
+                    CornerRadius="6">
+              <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#18dbdcd7" />
+                <Setter Property="Foreground" Value="#dbdcd7" />
+              </Trigger>
+              <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#22b8235a" />
+                <Setter Property="Foreground" Value="#dbdcd7" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  </Window.Resources>
 
-    <NavigationView
-      x:Name="NavView"
-      PaneTitle="aathoos"
-      IsSettingsVisible="False"
-      IsBackButtonVisible="Collapsed"
-      IsPaneToggleButtonVisible="False"
-      PaneDisplayMode="Left"
-      OpenPaneLength="200"
-      SelectionChanged="NavView_SelectionChanged"
-      Background="{StaticResource AppBackgroundBrush}">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="220" />
+      <ColumnDefinition Width="1" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
 
-      <NavigationView.MenuItems>
+    <!-- Sidebar -->
+    <Grid Grid.Column="0" Background="#23203a">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
 
-        <NavigationViewItem Tag="dashboard" Content="Dashboard">
-          <NavigationViewItem.Icon>
-            <FontIcon Glyph="&#xE8A1;" />
-          </NavigationViewItem.Icon>
-        </NavigationViewItem>
+      <!-- Branding -->
+      <StackPanel Grid.Row="0" Margin="20,28,20,20">
+        <TextBlock Text="aathoos" FontSize="20" FontWeight="Bold" Foreground="#dbdcd7" />
+        <TextBlock Text="Student OS" FontSize="12" Foreground="#80dbdcd7" Margin="0,2,0,0" />
+      </StackPanel>
 
-        <NavigationViewItem Tag="tasks" Content="Tasks">
-          <NavigationViewItem.Icon>
-            <FontIcon Glyph="&#xE73E;" />
-          </NavigationViewItem.Icon>
-        </NavigationViewItem>
+      <!-- Nav list -->
+      <ListBox Grid.Row="1"
+               x:Name="NavList"
+               Background="Transparent"
+               BorderThickness="0"
+               SelectionChanged="NavList_SelectionChanged">
+        <ListBoxItem Tag="Dashboard"    Style="{StaticResource NavItemStyle}"><TextBlock Text="Dashboard" /></ListBoxItem>
+        <ListBoxItem Tag="Tasks"        Style="{StaticResource NavItemStyle}"><TextBlock Text="Tasks" /></ListBoxItem>
+        <ListBoxItem Tag="Notes"        Style="{StaticResource NavItemStyle}"><TextBlock Text="Notes" /></ListBoxItem>
+        <ListBoxItem Tag="StudyPlanner" Style="{StaticResource NavItemStyle}"><TextBlock Text="Study Planner" /></ListBoxItem>
+        <ListBoxItem Tag="Goals"        Style="{StaticResource NavItemStyle}"><TextBlock Text="Goals" /></ListBoxItem>
+        <ListBoxItem Tag="FocusMode"    Style="{StaticResource NavItemStyle}"><TextBlock Text="Focus Mode" /></ListBoxItem>
+      </ListBox>
+    </Grid>
 
-        <NavigationViewItem Tag="notes" Content="Notes">
-          <NavigationViewItem.Icon>
-            <FontIcon Glyph="&#xE70B;" />
-          </NavigationViewItem.Icon>
-        </NavigationViewItem>
+    <!-- Sidebar divider -->
+    <Border Grid.Column="1" Background="#14dbdcd7" />
 
-        <NavigationViewItem Tag="studyplanner" Content="Study Planner">
-          <NavigationViewItem.Icon>
-            <FontIcon Glyph="&#xE787;" />
-          </NavigationViewItem.Icon>
-        </NavigationViewItem>
-
-        <NavigationViewItem Tag="goals" Content="Goals">
-          <NavigationViewItem.Icon>
-            <FontIcon Glyph="&#xE879;" />
-          </NavigationViewItem.Icon>
-        </NavigationViewItem>
-
-        <NavigationViewItem Tag="focusmode" Content="Focus Mode">
-          <NavigationViewItem.Icon>
-            <FontIcon Glyph="&#xE708;" />
-          </NavigationViewItem.Icon>
-        </NavigationViewItem>
-
-      </NavigationView.MenuItems>
-
-      <!-- Main content frame -->
-      <Frame x:Name="ContentFrame" Background="{StaticResource AppBackgroundBrush}" />
-
-    </NavigationView>
+    <!-- Main content -->
+    <ContentControl Grid.Column="2" x:Name="MainContent" Background="#1c1a27" />
   </Grid>
 </Window>

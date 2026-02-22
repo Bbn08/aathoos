@@ -1,11 +1,8 @@
-using Microsoft.UI.Xaml.Controls;
+using System.Windows.Controls;
 
 namespace aathoos.Views;
 
-public sealed partial class StudyPlannerPage : Page
+public partial class StudyPlannerPage : UserControl
 {
-  public StudyPlannerPage()
-  {
-    InitializeComponent();
-  }
+    public StudyPlannerPage() => InitializeComponent();
 }

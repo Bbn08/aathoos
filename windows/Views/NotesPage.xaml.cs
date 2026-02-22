@@ -1,11 +1,8 @@
-using Microsoft.UI.Xaml.Controls;
+using System.Windows.Controls;
 
 namespace aathoos.Views;
 
-public sealed partial class NotesPage : Page
+public partial class NotesPage : UserControl
 {
-  public NotesPage()
-  {
-    InitializeComponent();
-  }
+    public NotesPage() => InitializeComponent();
 }

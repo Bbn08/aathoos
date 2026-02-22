@@ -1,11 +1,8 @@
-using Microsoft.UI.Xaml.Controls;
+using System.Windows.Controls;
 
 namespace aathoos.Views;
 
-public sealed partial class FocusModePage : Page
+public partial class FocusModePage : UserControl
 {
-  public FocusModePage()
-  {
-    InitializeComponent();
-  }
+    public FocusModePage() => InitializeComponent();
 }

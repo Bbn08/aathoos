@@ -1,11 +1,8 @@
-using Microsoft.UI.Xaml.Controls;
+using System.Windows.Controls;
 
 namespace aathoos.Views;
 
-public sealed partial class DashboardPage : Page
+public partial class DashboardPage : UserControl
 {
-  public DashboardPage()
-  {
-    InitializeComponent();
-  }
+    public DashboardPage() => InitializeComponent();
 }
