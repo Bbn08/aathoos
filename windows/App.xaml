@@ -7,28 +7,47 @@
   <Application.Resources>
 
     <!-- ── Palette ─────────────────────────────────────────────────────── -->
-    <SolidColorBrush x:Key="AppBackgroundBrush"   Color="#13111f"/>
-    <SolidColorBrush x:Key="AppSurfaceBrush"      Color="#1d1a30"/>
-    <SolidColorBrush x:Key="AppSurface2Brush"     Color="#262240"/>
-    <SolidColorBrush x:Key="AppForegroundBrush"   Color="#e2e3de"/>
-    <SolidColorBrush x:Key="AppMutedBrush"        Color="#8485a0"/>
+    <SolidColorBrush x:Key="AppBackgroundBrush"   Color="#0f0d1a"/>
+    <SolidColorBrush x:Key="AppSurfaceBrush"      Color="#1a1728"/>
+    <SolidColorBrush x:Key="AppSurface2Brush"     Color="#22203a"/>
+    <SolidColorBrush x:Key="AppSurface3Brush"     Color="#2c2948"/>
+    <SolidColorBrush x:Key="AppForegroundBrush"   Color="#e8e9e4"/>
+    <SolidColorBrush x:Key="AppMutedBrush"        Color="#7a7b95"/>
     <SolidColorBrush x:Key="AppAccentBrush"       Color="#c4264d"/>
-    <SolidColorBrush x:Key="AppAccentGlowBrush"   Color="#33c4264d"/>
-    <SolidColorBrush x:Key="AppBorderBrush"       Color="#2e2a48"/>
+    <SolidColorBrush x:Key="AppAccentHoverBrush"  Color="#d4305a"/>
+    <SolidColorBrush x:Key="AppAccentGlowBrush"   Color="#40c4264d"/>
+    <SolidColorBrush x:Key="AppBorderBrush"       Color="#2a2742"/>
     <SolidColorBrush x:Key="AppSuccessBrush"      Color="#22c55e"/>
     <SolidColorBrush x:Key="AppWarningBrush"      Color="#f59e0b"/>
     <SolidColorBrush x:Key="AppErrorBrush"        Color="#ef4444"/>
     <SolidColorBrush x:Key="AppInfoBrush"         Color="#60a5fa"/>
+    <SolidColorBrush x:Key="TitleBarFgBrush"      Color="#c8c9c4"/>
 
-    <!-- ── Button ─────────────────────────────────────────────────────── -->
+    <!-- Gradient brushes -->
+    <LinearGradientBrush x:Key="SidebarActiveGradient" StartPoint="0,0" EndPoint="1,0">
+      <GradientStop Color="#38c4264d" Offset="0"/>
+      <GradientStop Color="#06c4264d" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,0">
+      <GradientStop Color="#c4264d" Offset="0"/>
+      <GradientStop Color="#e03060" Offset="1"/>
+    </LinearGradientBrush>
+
+    <RadialGradientBrush x:Key="AppGlowBrush" Center="0.5,0" RadiusX="0.6" RadiusY="0.4" GradientOrigin="0.5,0">
+      <GradientStop Color="#10c4264d" Offset="0"/>
+      <GradientStop Color="#00c4264d" Offset="1"/>
+    </RadialGradientBrush>
+
+    <!-- ── Button (with smooth Storyboard hover) ──────────────────────── -->
     <Style TargetType="Button">
-      <Setter Property="Background"     Value="{StaticResource AppSurface2Brush}"/>
-      <Setter Property="Foreground"     Value="{StaticResource AppForegroundBrush}"/>
-      <Setter Property="BorderThickness" Value="0"/>
-      <Setter Property="Padding"        Value="16,9"/>
-      <Setter Property="FontSize"       Value="13.5"/>
-      <Setter Property="FontFamily"     Value="Segoe UI"/>
-      <Setter Property="Cursor"         Value="Hand"/>
+      <Setter Property="Background"          Value="{StaticResource AppSurface2Brush}"/>
+      <Setter Property="Foreground"          Value="{StaticResource AppForegroundBrush}"/>
+      <Setter Property="BorderThickness"     Value="0"/>
+      <Setter Property="Padding"             Value="16,9"/>
+      <Setter Property="FontSize"            Value="13.5"/>
+      <Setter Property="FontFamily"          Value="Segoe UI"/>
+      <Setter Property="Cursor"              Value="Hand"/>
       <Setter Property="SnapsToDevicePixels" Value="True"/>
       <Setter Property="Template">
         <Setter.Value>
@@ -38,18 +57,34 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     CornerRadius="8"
-                    Padding="{TemplateBinding Padding}">
+                    Padding="{TemplateBinding Padding}"
+                    Opacity="1">
               <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
             <ControlTemplate.Triggers>
-              <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Root" Property="Opacity" Value="0.80"/>
-              </Trigger>
+              <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="Root"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="0.82" Duration="0:0:0.12"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </EventTrigger>
+              <EventTrigger RoutedEvent="MouseLeave">
+                <BeginStoryboard>
+                  <Storyboard>
+                    <DoubleAnimation Storyboard.TargetName="Root"
+                                     Storyboard.TargetProperty="Opacity"
+                                     To="1" Duration="0:0:0.15"/>
+                  </Storyboard>
+                </BeginStoryboard>
+              </EventTrigger>
               <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="Root" Property="Opacity" Value="0.60"/>
+                <Setter TargetName="Root" Property="Opacity" Value="0.58"/>
               </Trigger>
               <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="Root" Property="Opacity" Value="0.35"/>
+                <Setter TargetName="Root" Property="Opacity" Value="0.32"/>
               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
@@ -58,7 +93,7 @@
     </Style>
 
     <Style x:Key="AccentButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-      <Setter Property="Background" Value="{StaticResource AppAccentBrush}"/>
+      <Setter Property="Background" Value="{StaticResource AccentGradient}"/>
       <Setter Property="Foreground" Value="White"/>
     </Style>
 
@@ -68,9 +103,9 @@
     </Style>
 
     <Style x:Key="GhostButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-      <Setter Property="Background"        Value="Transparent"/>
-      <Setter Property="BorderThickness"   Value="1"/>
-      <Setter Property="BorderBrush"       Value="{StaticResource AppBorderBrush}"/>
+      <Setter Property="Background"      Value="Transparent"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="BorderBrush"     Value="{StaticResource AppBorderBrush}"/>
     </Style>
 
     <Style x:Key="IconButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -80,9 +115,58 @@
       <Setter Property="Height"     Value="28"/>
     </Style>
 
+    <!-- Title bar controls -->
+    <Style x:Key="TitleBarButton" TargetType="Button">
+      <Setter Property="Background"      Value="Transparent"/>
+      <Setter Property="Foreground"      Value="{StaticResource TitleBarFgBrush}"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Width"           Value="46"/>
+      <Setter Property="Height"          Value="40"/>
+      <Setter Property="FontSize"        Value="10"/>
+      <Setter Property="FontFamily"      Value="Segoe MDL2 Assets"/>
+      <Setter Property="Cursor"          Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="Root" Background="{TemplateBinding Background}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#18ffffff"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#28ffffff"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="TitleCloseButton" TargetType="Button" BasedOn="{StaticResource TitleBarButton}">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="Root" Background="{TemplateBinding Background}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#c42b47"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="Root" Property="Background" Value="#9e1f38"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
     <!-- ── TextBox ────────────────────────────────────────────────────── -->
     <Style TargetType="TextBox">
-      <Setter Property="Background"        Value="{StaticResource AppSurfaceBrush}"/>
+      <Setter Property="Background"        Value="{StaticResource AppSurface2Brush}"/>
       <Setter Property="Foreground"        Value="{StaticResource AppForegroundBrush}"/>
       <Setter Property="CaretBrush"        Value="{StaticResource AppForegroundBrush}"/>
       <Setter Property="SelectionBrush"    Value="{StaticResource AppAccentBrush}"/>
@@ -119,10 +203,10 @@
     </Style>
 
     <Style x:Key="MultilineTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-      <Setter Property="AcceptsReturn"                  Value="True"/>
-      <Setter Property="TextWrapping"                   Value="Wrap"/>
+      <Setter Property="AcceptsReturn"     Value="True"/>
+      <Setter Property="TextWrapping"      Value="Wrap"/>
       <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-      <Setter Property="VerticalContentAlignment"       Value="Top"/>
+      <Setter Property="VerticalContentAlignment" Value="Top"/>
       <Setter Property="Template">
         <Setter.Value>
           <ControlTemplate TargetType="TextBox">
@@ -151,7 +235,7 @@
     <Style TargetType="ProgressBar">
       <Setter Property="Height"          Value="6"/>
       <Setter Property="Background"      Value="{StaticResource AppBorderBrush}"/>
-      <Setter Property="Foreground"      Value="{StaticResource AppAccentBrush}"/>
+      <Setter Property="Foreground"      Value="{StaticResource AccentGradient}"/>
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Template">
         <Setter.Value>
@@ -168,9 +252,80 @@
       </Setter>
     </Style>
 
+    <!-- ── Thin dark ScrollBar ────────────────────────────────────────── -->
+    <Style TargetType="ScrollBar">
+      <Setter Property="Background"    Value="Transparent"/>
+      <Setter Property="Width"         Value="6"/>
+      <Setter Property="MinWidth"      Value="6"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ScrollBar">
+            <Grid x:Name="GridRoot" Background="Transparent" Width="6">
+              <Track x:Name="PART_Track" IsDirectionReversed="True">
+                <Track.DecreaseRepeatButton>
+                  <RepeatButton Command="ScrollBar.PageUpCommand"
+                                Background="Transparent" BorderThickness="0"
+                                Opacity="0" Focusable="False"/>
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                  <Thumb>
+                    <Thumb.Template>
+                      <ControlTemplate TargetType="Thumb">
+                        <Border x:Name="ThumbBorder" CornerRadius="3"
+                                Background="#504e6e" Opacity="0.7"/>
+                        <ControlTemplate.Triggers>
+                          <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ThumbBorder" Property="Background" Value="#7a789a"/>
+                            <Setter TargetName="ThumbBorder" Property="Opacity" Value="1"/>
+                          </Trigger>
+                          <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="ThumbBorder" Property="Background" Value="{StaticResource AppAccentBrush}"/>
+                            <Setter TargetName="ThumbBorder" Property="Opacity" Value="1"/>
+                          </Trigger>
+                        </ControlTemplate.Triggers>
+                      </ControlTemplate>
+                    </Thumb.Template>
+                  </Thumb>
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                  <RepeatButton Command="ScrollBar.PageDownCommand"
+                                Background="Transparent" BorderThickness="0"
+                                Opacity="0" Focusable="False"/>
+                </Track.IncreaseRepeatButton>
+              </Track>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style TargetType="ScrollViewer">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ScrollViewer">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <ScrollContentPresenter Grid.Column="0"
+                                      CanContentScroll="{TemplateBinding CanContentScroll}"/>
+              <ScrollBar Grid.Column="1"
+                         x:Name="PART_VerticalScrollBar"
+                         Orientation="Vertical"
+                         Value="{TemplateBinding VerticalOffset}"
+                         Maximum="{TemplateBinding ScrollableHeight}"
+                         ViewportSize="{TemplateBinding ViewportHeight}"
+                         Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
     <!-- ── ComboBox (minimal dark) ────────────────────────────────────── -->
     <Style TargetType="ComboBox">
-      <Setter Property="Background"   Value="{StaticResource AppSurfaceBrush}"/>
+      <Setter Property="Background"   Value="{StaticResource AppSurface2Brush}"/>
       <Setter Property="Foreground"   Value="{StaticResource AppForegroundBrush}"/>
       <Setter Property="BorderBrush"  Value="{StaticResource AppBorderBrush}"/>
       <Setter Property="Padding"      Value="10,8"/>
